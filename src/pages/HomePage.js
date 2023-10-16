@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   FeaturedProducts,
   Hero,
@@ -7,11 +7,16 @@ import {
   Navbar,
   Sidebar,
 } from "../components";
+
 const HomePage = () => {
   return (
-    <>
-      <h3>home page</h3>
-    </>
+    <main>
+      <Hero />
+
+      <FeaturedProducts />
+      <Contact />
+      <Services />
+    </main>
   );
 };
 
