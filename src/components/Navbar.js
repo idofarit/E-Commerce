@@ -10,6 +10,7 @@ import { useUserContext } from "../context/user_context";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
+  const { openSideBar } = useProductsContext();
   return (
     <NavContainer>
       <div className="nav-center">
@@ -17,7 +18,7 @@ const Nav = () => {
           <Link to="/">
             <img src={logo} />
           </Link>
-          <button className="nav-toggle">
+          <button className="nav-toggle" onClick={openSideBar}>
             <FaBars />
           </button>
         </div>
