@@ -7,15 +7,16 @@ import {
   Navbar,
   Sidebar,
 } from "../components";
+import ScrollAnimate from "../components/ScrollAnimate";
 
 const HomePage = () => {
   return (
     <main>
       <Hero />
-
+      <ScrollAnimate />
       <FeaturedProducts />
-      <Contact />
       <Services />
+      <Contact />
     </main>
   );
 };
