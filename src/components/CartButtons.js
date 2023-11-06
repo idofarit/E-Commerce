@@ -24,7 +24,7 @@ const CartButtons = () => {
           <span className="cart-value">{total_items}</span>
         </span>
       </Link>
-      {isLoggedIn ? (
+      {/* {isLoggedIn ? (
         <Link onClick={handleLogOut} className="cart-btn">
           LogOut
           <span className="auth-btn">
@@ -38,15 +38,7 @@ const CartButtons = () => {
             <FaUserPlus />
           </span>
         </Link>
-      )}
-
-      {/* <Link to="/cart" className="cart-btn" onClick={closeSideBar}>
-        cart
-        <span className="cart-container">
-          <FaShoppingCart />
-          <span className="cart-value">{total_items}</span>
-        </span>
-      </Link> */}
+      )} */}
     </Wrapper>
   );
 };
