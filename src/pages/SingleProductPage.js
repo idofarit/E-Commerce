@@ -9,10 +9,12 @@ import {
   ProductImages,
   AddToCart,
   Stars,
-  PageHero,
+  FeaturedProducts,
 } from "../components";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+
+import SimilarProducts from "../components/SimilarProducts";
 
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -22,12 +24,13 @@ const SingleProductPage = () => {
     single_product_error: error,
     single_product: product,
     fetchSingleProduct,
+    products: similar_products,
   } = useProductsContext();
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
   }, [id]);
-  console.log(product);
+  // console.log(product);
   useEffect(() => {
     if (error) {
       setTimeout(() => {
@@ -54,21 +57,36 @@ const SingleProductPage = () => {
 
   return (
     <Wrapper>
-      <PageHero title={name} />
       <div className="section section-center page">
         <Link to="/products" className="btn">
           back to products
         </Link>
-        <div className="products-center">
-          <ProductImages />
+        <div className="product-center">
+          <ProductImages images={images} />
           <section className="content">
             <h2>{name}</h2>
-            <Stars />
+
+            <Stars stars={stars} reviews={reviews} />
             <h5 className="price">{formatPrice(price)}</h5>
             <p className="desc">{description}</p>
+            <p className="info">
+              <span>Available : </span>
+              {stock > 0 ? "In Stock" : "Out of stock"}
+            </p>
+            <p className="info">
+              <span>SKU :</span>
+              {sku}
+            </p>
+            <p className="info">
+              <span>Brand :</span>
+              {company}
+            </p>
+            <hr />
+            {stock > 0 && <AddToCart product={product} />}
           </section>
         </div>
       </div>
+      <SimilarProducts />
     </Wrapper>
   );
 };

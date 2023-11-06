@@ -39,7 +39,19 @@ const FeaturedProducts = () => {
 };
 
 const Wrapper = styled.section`
-  background: var(--clr-grey-10);
+  position: relative;
+  background: linear-gradient(
+      38.73deg,
+      rgba(7, 62, 87, 0.15) 0%,
+      rgba(201, 32, 184, 0) 50%
+    ),
+    linear-gradient(
+      141.27deg,
+      rgba(0, 70, 209, 0) 50%,
+      rgba(44, 215, 234, 0.15) 100%
+    );
+  width: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 80% 98%, 0 100%);
   .featured {
     margin: 4rem auto;
     display: grid;
@@ -49,12 +61,6 @@ const Wrapper = styled.section`
     }
   }
   .product-btn {
-    /* display: block;
-    width: 158px;
-    margin: 0 auto;
-    text-align: center;
-    color: white; */
-
     margin: 0 auto;
     text-align: center;
     text-transform: uppercase;

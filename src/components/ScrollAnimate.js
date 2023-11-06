@@ -47,6 +47,7 @@ export default ScrollAnimate;
 const Wrapper = styled.div`
   /* width: auto; */
   height: fit-content;
+  padding-bottom: 2rem;
 
   display: flex;
   align-items: center;
@@ -54,10 +55,19 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin-top: -8rem;
   margin-bottom: 2rem;
+  background: linear-gradient(
+      38.73deg,
+      rgba(7, 62, 87, 0.15) 0%,
+      rgba(201, 32, 184, 0) 50%
+    ),
+    linear-gradient(
+      141.27deg,
+      rgba(0, 70, 209, 0) 50%,
+      rgba(44, 215, 234, 0.15) 100%
+    );
+  width: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 80% 98%, 0 100%);
 
-  /* @media screen and (max-width: 1150px) {
-    margin-top: -5rem;
-  } */
   @media screen and (max-width: 750px) {
     margin-top: -5rem;
   }

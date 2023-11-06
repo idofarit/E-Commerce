@@ -5,22 +5,48 @@ import styled from "styled-components";
 import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
 import { useUserContext } from "../context/user_context";
+import { useFirebase } from "../Firebase/Firebase";
+import cartLogo from "../assets/cartlogo.png";
 
 const CartButtons = () => {
+  const { total_items } = useCartContext();
   const { closeSideBar } = useProductsContext();
+  const { isLoggedIn, handleLogOut } = useFirebase();
   return (
     <Wrapper className="cart-btn-wrapper">
       <Link to="/cart" className="cart-btn" onClick={closeSideBar}>
         cart
         <span className="cart-container">
-          <FaShoppingCart />
-          <span className="cart-value">10</span>
+          {/* <FaShoppingCart /> */}
+          <div className="cart-btn">
+            <img src={cartLogo} alt="" />
+          </div>
+          <span className="cart-value">{total_items}</span>
         </span>
       </Link>
-      <button className="auth-btn">
-        LogIn
-        <FaUserPlus />
-      </button>
+      {isLoggedIn ? (
+        <Link onClick={handleLogOut} className="cart-btn">
+          LogOut
+          <span className="auth-btn">
+            <FaUserMinus />
+          </span>
+        </Link>
+      ) : (
+        <Link to="/login" className="cart-btn" onClick={closeSideBar}>
+          LogIn
+          <span className="auth-btn">
+            <FaUserPlus />
+          </span>
+        </Link>
+      )}
+
+      {/* <Link to="/cart" className="cart-btn" onClick={closeSideBar}>
+        cart
+        <span className="cart-container">
+          <FaShoppingCart />
+          <span className="cart-value">{total_items}</span>
+        </span>
+      </Link> */}
     </Wrapper>
   );
 };
@@ -32,13 +58,14 @@ const Wrapper = styled.div`
   width: 225px;
 
   .cart-btn {
-    color: var(--clr-grey-1);
-    font-size: 1.5rem;
-    letter-spacing: var(--spacing);
-    color: var(--clr-grey-1);
     display: flex;
-
     align-items: center;
+    padding: 10px;
+    color: goldenrod;
+    img {
+      width: 30px;
+      height: fit-content;
+    }
   }
   .cart-container {
     display: flex;
@@ -51,9 +78,9 @@ const Wrapper = styled.div`
   }
   .cart-value {
     position: absolute;
-    top: -10px;
-    right: -16px;
-    background: var(--clr-primary-5);
+    top: 0px;
+    right: -15px;
+    background: var(--clr-primary-2);
     width: 16px;
     height: 16px;
     display: flex;
@@ -69,7 +96,7 @@ const Wrapper = styled.div`
     align-items: center;
     background: transparent;
     border-color: transparent;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     cursor: pointer;
     color: var(--clr-grey-1);
     letter-spacing: var(--spacing);

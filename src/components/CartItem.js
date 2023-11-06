@@ -1,12 +1,43 @@
-import React from 'react'
-import styled from 'styled-components'
-import { formatPrice } from '../utils/helpers'
-import AmountButtons from './AmountButtons'
-import { FaTrash } from 'react-icons/fa'
-import { useCartContext } from '../context/cart_context'
-const CartItem = () => {
-  return <h4>cart item</h4>
-}
+import React from "react";
+import styled from "styled-components";
+import { formatPrice } from "../utils/helpers";
+import AmountButtons from "./AmountButtons";
+import { FaTrash } from "react-icons/fa";
+import { useCartContext } from "../context/cart_context";
+const CartItem = ({ id, image, color, price, amount, name }) => {
+  const { removeItem, toggleAmount } = useCartContext();
+  const increase = () => {
+    toggleAmount(id, "inc");
+  };
+  const decrease = () => {
+    toggleAmount(id, "dec");
+  };
+
+  return (
+    <Wrapper>
+      <div className="title">
+        <img src={image} alt={name} />
+        <div>
+          <h5 className="name">{name}</h5>
+          <p className="color">
+            color : <span style={{ background: color }}></span>
+          </p>
+          <h5 className="price-small">{formatPrice(price)}</h5>
+          <button
+            className="remove-btn"
+            type="button"
+            onClick={() => removeItem(id)}
+          >
+            remove
+          </button>
+        </div>
+      </div>
+      <h5 className="price">{formatPrice(price)}</h5>
+      <AmountButtons amount={amount} increase={increase} decrease={decrease} />
+      <h5 className="subtotal">{formatPrice(price * amount)}</h5>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.article`
   .subtotal {
@@ -64,7 +95,7 @@ const Wrapper = styled.article`
     color: var(--clr-primary-5);
   }
   .amount-btns {
-    width: 75px;
+    width: 55px;
     button {
       width: 1rem;
       height: 0.5rem;
@@ -80,15 +111,15 @@ const Wrapper = styled.article`
     border: transparent;
     letter-spacing: var(--spacing);
     background: var(--clr-red-dark);
-    width: 1.5rem;
+    width: 4.5rem;
     height: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
     border-radius: var(--radius);
     font-size: 0.75rem;
+    margin-top: 1rem;
     cursor: pointer;
   }
+
   @media (min-width: 776px) {
     .subtotal {
       display: block;
@@ -138,10 +169,10 @@ const Wrapper = styled.article`
         font-size: 1rem;
       }
       h2 {
-        font-size: 1.5rem;
+        font-size: 0.5rem;
       }
     }
   }
-`
+`;
 
-export default CartItem
+export default CartItem;

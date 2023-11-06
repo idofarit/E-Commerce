@@ -8,15 +8,17 @@ import {
   Sidebar,
 } from "../components";
 import ScrollAnimate from "../components/ScrollAnimate";
+import Category from "../components/Category";
+import styled from "styled-components";
 
 const HomePage = () => {
   return (
     <main>
       <Hero />
       <ScrollAnimate />
+
       <FeaturedProducts />
-      <Services />
-      <Contact />
+      <Category />
     </main>
   );
 };

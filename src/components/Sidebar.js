@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { FaTimes } from "react-icons/fa";
@@ -7,8 +7,10 @@ import { links } from "../utils/constants";
 import styled from "styled-components";
 import CartButtons from "./CartButtons";
 import { useUserContext } from "../context/user_context";
+import { useFirebase } from "../Firebase/Firebase";
 
 const Sidebar = () => {
+  const { user } = useFirebase();
   const { isSideBarOpen, closeSideBar } = useProductsContext();
 
   return (
@@ -31,11 +33,13 @@ const Sidebar = () => {
               </li>
             );
           })}
-          <li>
-            <Link to="/checkout" onClick={closeSideBar}>
-              checkout
-            </Link>
-          </li>
+          {user && (
+            <li>
+              <Link to="/checkout" onClick={closeSideBar}>
+                checkout
+              </Link>
+            </li>
+          )}
         </ul>
         <CartButtons />
       </aside>
@@ -70,6 +74,9 @@ const SidebarContainer = styled.div`
   }
   .links {
     margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .links a {
     display: block;
@@ -85,7 +92,6 @@ const SidebarContainer = styled.div`
   .links a:hover {
     padding: 1rem 1.5rem;
     padding-left: 2rem;
-    background: var(--clr-grey-10);
     color: var(--clr-grey-2);
   }
 

@@ -72,13 +72,8 @@ const Hero = () => {
 };
 
 const Wrapper = styled.section`
-  /* min-height: 60vh;
-  display: grid;
-  place-items: center; */
-  /* project css */
   .slider-container {
     margin: 0 auto;
-    margin-top: 2rem;
     width: 100vw;
     max-width: 100%;
     position: relative;
@@ -162,16 +157,22 @@ const Wrapper = styled.section`
     .text {
       max-width: 15rem;
     }
-    .next,
+    /* .next,
     .prev {
-      top: 190px;
-    }
+      top: 100px;
+    } */
 
     .next,
     .prev {
       width: 2rem;
       height: 2rem;
       font-size: 1.5rem;
+    }
+  }
+  @media screen and (max-width: 1100px) {
+    .next,
+    .prev {
+      top: 100px;
     }
   }
   @media screen and (max-width: 390px) {
@@ -185,10 +186,6 @@ const Wrapper = styled.section`
     .banner-img {
       max-width: 100%;
       max-height: 100%;
-    }
-    .next,
-    .prev {
-      top: 130px;
     }
   }
   @media screen and (max-width: 540px) {

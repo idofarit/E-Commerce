@@ -4,12 +4,6 @@ import img3 from "./images/vecteezy_paper-art-shopping-online-on-smartphone-and-
 import img4 from "./images/vecteezy_flash-big-sale-shopping-online-on-phone-banner-business_6828783.jpg";
 
 const Sdata = [
-  // {
-  //   id: 1,
-  //   title: "50% Off For Your 1st Shopping",
-  //   desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis consequat eu, quam etiam at quis ut convallis.",
-  //   cover: img1,
-  // },
   {
     id: 2,
     title: "50% Off For Your second Shopping",

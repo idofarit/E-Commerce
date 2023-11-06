@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Route,
   BrowserRouter as Router,
@@ -9,39 +9,68 @@ import {
 import {
   AboutPage,
   CartPage,
+  Login,
   CheckoutPage,
   ErrorPage,
   Home,
   PrivateRoute,
   ProductsPage,
   SingleProductPage,
+  Register,
+  AuthWrapper,
 } from "./pages";
 import { Footer, Navbar, Sidebar } from "./components";
+import HomeLayout from "./pages/HomeLayout";
+import { useFirebase } from "./Firebase/Firebase";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "about",
+        element: <AboutPage />,
+      },
+      {
+        path: "products",
+        element: <ProductsPage />,
+      },
+      {
+        path: "cart",
+        element: <CartPage />,
+      },
+      {
+        path: "products/:id",
+        element: <SingleProductPage />,
+      },
+      {
+        path: "checkout",
+        element: (
+          <PrivateRoute>
+            <CheckoutPage />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+]);
 
 const App = () => {
-  return (
-    <Router>
-      <Navbar />
-      <Sidebar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="about" element={<AboutPage />} />
-        <Route path="products" element={<ProductsPage />} />
-        <Route path="products/:id" element={<SingleProductPage />} />
-        <Route
-          path="checkout"
-          element={
-            <PrivateRoute>
-              <CheckoutPage />
-            </PrivateRoute>
-          }
-        />
-        <Route path="cart" element={<CartPage />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-      <Footer />
-    </Router>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

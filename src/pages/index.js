@@ -6,3 +6,6 @@ export { default as CartPage } from "./CartPage";
 export { default as CheckoutPage } from "./CheckoutPage";
 export { default as ErrorPage } from "./ErrorPage";
 export { default as PrivateRoute } from "./PrivateRoute";
+export { default as Login } from "./Login";
+export { default as Register } from "./Register";
+export { default as AuthWrapper } from "./AuthWrapper";
