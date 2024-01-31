@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import {
   Route,
   BrowserRouter as Router,
@@ -19,9 +20,8 @@ import {
   Register,
   AuthWrapper,
 } from "./pages";
-import { Footer, Navbar, Sidebar } from "./components";
+import { Footer, Header, Navbar, Sidebar } from "./components";
 import HomeLayout from "./pages/HomeLayout";
-import { useFirebase } from "./Firebase/Firebase";
 
 const router = createBrowserRouter([
   {

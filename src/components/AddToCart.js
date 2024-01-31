@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 import { useCartContext } from "../context/cart_context";
 import AmountButtons from "./AmountButtons";
-import { useFirebase } from "../Firebase/Firebase";
-import userEvent from "@testing-library/user-event";
 
 const AddToCart = ({ product }) => {
   const { addToCart } = useCartContext();
 
   const { id, stock, colors } = product;
-  // console.log(colors);
   const [mainColor, setMainColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
 

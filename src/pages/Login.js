@@ -1,13 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form, Link } from "react-router-dom";
 import styled from "styled-components";
-import FormInput from "../components/FormInput";
+
 import { firebaseAuth, useFirebase } from "../Firebase/Firebase";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AuthContext } from "../context/auth_context";
+import gImg from "../assets/g-img.png";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -20,11 +24,11 @@ const Wrapper = styled.div`
     flex-direction: column;
     border-radius: 1rem;
     width: 20rem /* 384px */;
-    row-gap: 2rem;
+    row-gap: 1rem;
     h4 {
       text-align: center;
-      font-size: 1.875rem /* 30px */;
-      line-height: 2.25rem /* 36px */;
+      font-size: 1.875rem;
+      line-height: 2.25rem;
       font-weight: 700;
     }
   }
@@ -60,7 +64,7 @@ const Wrapper = styled.div`
     width: 184px;
     height: 42px;
     background-color: $google-blue;
-    border-radius: 2px;
+    border-radius: 12px;
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
 
     .google-icon-wrapper {
@@ -101,37 +105,9 @@ const Wrapper = styled.div`
 `;
 
 const Login = () => {
-  const firebase = useFirebase();
   const navigate = useNavigate();
-  // const [values, setValues] = useState({
-  //   email: "",
-  //   password: "",
-  // });
-  // const [errorMsg, setErrorMsg] = useState("");
+
   const [submitBtnDisabled, setSubmitBtnDisabled] = useState(false);
-
-  // submit function
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (!values.email || !values.password) {
-  //     setErrorMsg("fill all fields");
-
-  //     return;
-  //   }
-  //   setErrorMsg("");
-
-  //   setSubmitBtnDisabled(true);
-  //   signInWithEmailAndPassword(firebaseAuth, values.email, values.password)
-  //     .then(async (response) => {
-  //       setSubmitBtnDisabled(false);
-  //       navigate("/");
-  //     })
-  //     .catch((error) => {
-  //       setSubmitBtnDisabled(false);
-  //     });
-  // };
-
-  // new try
 
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -149,7 +125,6 @@ const Login = () => {
           "Logged in successfully, you will be redirected to homepage"
         );
 
-        // console.log(loggeduser.email)
         setEmail("");
         setPassword("");
         setErrorMsg("");
@@ -162,15 +137,26 @@ const Login = () => {
         setSubmitBtnDisabled(false);
         const errorCode = error.code;
         console.log(error.message);
-        if (error.message == "Firebase: Error (auth/invalid-email).") {
+        if (error.message === "Firebase: Error (auth/invalid-email).") {
           toast.warning("Please fill all required fields");
         }
-        if (error.message == "Firebase: Error (auth/user-not-found).") {
+        if (error.message === "Firebase: Error (auth/user-not-found).") {
           toast.error("Email not found");
         }
-        if (error.message == "Firebase: Error (auth/wrong-password).") {
+        if (error.message === "Firebase: Error (auth/wrong-password).") {
           toast.warning("Wrong Password");
         }
+      });
+  };
+
+  const handleGoogleSignIn = async () => {
+    const provider = await new GoogleAuthProvider();
+    signInWithPopup(firebaseAuth, provider)
+      .then((response) => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -180,32 +166,16 @@ const Login = () => {
         <h4>LogIn</h4>
         <ToastContainer position="top-center" />
 
-        {/* <FormInput
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, email: e.target.value }))
-          }
-          type="email"
-          label="email"
-          name="identifier"
-        />
-        <FormInput
-          onChange={(e) =>
-            setValues((prev) => ({ ...prev, password: e.target.value }))
-          }
-          type="password"
-          label="password"
-          name="password"
-        />
-        <div style={{ marginTop: "1rem" }}>
-          <button
-            disabled={submitBtnDisabled}
-            type="submit"
-            className="submit-btn"
-            // onClick={handleSubmit}
-          >
-            submit
-          </button>
-        </div> */}
+        {/* google signIn button */}
+        <div className="google-btn" onClick={handleGoogleSignIn}>
+          <div className="google-icon-wrapper">
+            <img className="google-icon" src={gImg} />
+          </div>
+          <p className="btn-text">
+            <b>Sign in with google</b>
+          </p>
+        </div>
+        <strong style={{ textAlign: "center" }}>Or</strong>
 
         <label>Email</label>
         <input
@@ -237,18 +207,6 @@ const Login = () => {
             register
           </Link>
         </p>
-        {/* google signIn button */}
-        <div className="google-btn" onClick={firebase.signInWithGoogle}>
-          <div className="google-icon-wrapper">
-            <img
-              className="google-icon"
-              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-            />
-          </div>
-          <p className="btn-text">
-            <b>Sign in with google</b>
-          </p>
-        </div>
       </Form>
     </Wrapper>
   );

@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import bedroom from "../assets/bedroom.jpg";
-import kids from "../assets/kids.jpg";
-import livingRoom from "../assets/livingRoom.jpg";
-import officeChair from "../assets/officeChair.jpg";
-import sofa from "../assets/sofa.jpg";
-import yellowChair from "../assets/yellowChair.jpg";
+import infant from "../assets/infant.JPG";
+import kids from "../assets/kids.JPG";
+import women from "../assets/women.JPG";
+import bangle from "../assets/bangle.JPG";
+import men from "../assets/men.jpg";
+import jwellery from "../assets/jwellery.JPG";
 
 import { Link } from "react-router-dom";
 import Contact from "./Contact";
@@ -29,6 +29,7 @@ const Warpper = styled.div`
     height: 100vh;
     gap: 10px;
     margin: 10px;
+    margin-top: 1.5rem !important;
 
     .col {
       flex: 1;
@@ -50,17 +51,15 @@ const Warpper = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
-        &:hover {
-          transition: all 200ms ease-in-out;
-          transform: scale(1.2);
-        }
       }
 
       button {
         position: absolute;
-        /* min-width: 100px; */
+        border-radius: 5px;
+        font-size: 1rem;
+        letter-spacing: 2px;
         width: fit-content;
-        height: 50px;
+        height: 40px;
         padding: 10px;
         top: 0;
         bottom: 0;
@@ -72,6 +71,27 @@ const Warpper = styled.div`
         background-color: #fff;
         text-transform: capitalize;
         font-weight: 500;
+        @media (max-width: 765px) {
+          font-size: 0.6rem;
+          letter-spacing: 1px;
+          padding: 0 5px;
+          height: 28px;
+        }
+      }
+    }
+    @media screen and (max-width: 765px) {
+      height: 50vh;
+      gap: 2px;
+      margin: 2px;
+
+      .col {
+        gap: 2px;
+      }
+      .row {
+        gap: 2px;
+      }
+      .col.col-1 {
+        gap: 2px;
       }
     }
   }
@@ -80,31 +100,38 @@ const Warpper = styled.div`
 const Category = () => {
   return (
     <Warpper className="section">
+      <div className="title">
+        <h2>Our categories</h2>
+        <div className="underline"></div>
+      </div>
       <div className="categories">
         <div className="col">
           <div className="row">
-            <img src={kids} alt="" />
+            <img src={infant} alt="" />
+            <div className="overlay"></div>
             <button>
               <Link to="/products" className="link">
-                Sale
+                Infant
               </Link>
             </button>
           </div>
           <div className="row">
-            <img src={bedroom} alt="" />
+            <img src={kids} alt="" />
+            <div className="overlay"></div>
             <button>
               <Link to="/products" className="link">
-                bedRoom
+                Kids
               </Link>
             </button>
           </div>
         </div>
         <div className="col">
           <div className="row">
-            <img src={sofa} alt="" />
+            <img src={men} alt="" />
+            <div className="overlay"></div>
             <button>
               <Link to="/products" className="link">
-                sofa
+                Men
               </Link>
             </button>
           </div>
@@ -114,35 +141,39 @@ const Category = () => {
           <div className="row">
             <div className="col">
               <div className="row">
-                <img src={yellowChair} alt="" />
+                <img src={jwellery} alt="" />
+                <div className="overlay"></div>
                 <button>
                   <Link to="/products" className="link">
-                    yellowChair
+                    Jwellery
                   </Link>
                 </button>
               </div>
             </div>
             <div className="col">
               <div className="row">
-                <img src={officeChair} alt="" />
+                <img src={bangle} alt="" />
+                <div className="overlay"></div>
                 <button>
                   <Link to="/products" className="link">
-                    officeChair
+                    Bangles
                   </Link>
                 </button>
               </div>
             </div>
           </div>
           <div className="row">
-            <img src={livingRoom} alt="" />
+            <img src={women} alt="" />
+            <div className="overlay"></div>
             <button>
               <Link to="/products" className="link">
-                livingRoom
+                Women
               </Link>
             </button>
           </div>
         </div>
       </div>
+      {/* <Subscription /> */}
       <Contact />
     </Warpper>
   );

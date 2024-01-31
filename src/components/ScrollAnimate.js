@@ -15,11 +15,9 @@ const ScrollAnimate = () => {
   ];
 
   return (
-    // <AppContainer>
     <Wrapper>
       <div className="section-center">
         <Text>Brands that you prefer</Text>
-        {/* <Note>Our cutsomers have gotten offers from awesome companies</Note> */}
         <Marquee>
           <MarqueeGroup>
             {row.map((item, index) => (
@@ -38,14 +36,12 @@ const ScrollAnimate = () => {
         </Marquee>
       </div>
     </Wrapper>
-    // </AppContainer>
   );
 };
 
 export default ScrollAnimate;
 
 const Wrapper = styled.div`
-  /* width: auto; */
   height: fit-content;
   padding-bottom: 2rem;
 
@@ -97,18 +93,10 @@ const Text = styled.div`
 
 const Marquee = styled.div`
   display: flex;
-  /* width: 1200px; */
-  /* width: 600px; */
+
   overflow: hidden;
   user-select: none;
 
-  /* -webkit-mask-image: linear-gradient(
-    to right,
-    hsl(0 0% 0% / 0),
-    hsl(0 0% 0% / 1) 10%,
-    hsl(0 0% 0% / 1) 90%,
-    hsl(0 0% 0% / 0)
-  ); */
   mask-image: linear-gradient(
     to right,
     hsl(0 0% 0% / 0),
@@ -144,8 +132,6 @@ const ImageGroup = styled.div`
   place-items: center;
   width: clamp(20rem, 10rem + 1vmin, 30rem);
   padding: calc(clamp(10rem, 1rem + 30vmin, 30rem) / 50);
-  /* width: clamp(10rem, 1rem + 40vmin, 30rem);
-  padding: calc(clamp(10rem, 1rem + 30vmin, 30rem) / 10); */
 `;
 const Image = styled.img`
   object-fit: contain;

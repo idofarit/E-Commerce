@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { firebaseAuth, useFirebase } from "../Firebase/Firebase";
-import { signOut } from "firebase/auth";
 
 import { ToastContainer, toast } from "react-toastify";
+import { useCartContext } from "../context/cart_context";
 
 const Wrapper = styled.div`
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  background-color: #d3f2eb;
+  background-color: var(--clr-grey-9);
   .container {
     align-items: center;
     display: flex;
@@ -34,17 +34,22 @@ const Wrapper = styled.div`
       line-height: 1.25rem /* 20px */;
     }
   }
+  button {
+    padding: 2px 8px;
+    height: 1.5rem;
+    margin: 0 10px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 7px 4px 7px 2px rgba(0, 0, 0, 0.18);
+  }
 `;
 
 const Header = () => {
-  // useEffect(() => {
-  //   firebaseAuth.onAuthStateChanged((user) => {
-  //     console.log(user);
-  //   });
-  // }, []);
-  const { isLoggedIn, user } = useFirebase();
+  const { clearCart } = useCartContext();
+  const { user } = useFirebase();
   const navigate = useNavigate();
-  console.log(isLoggedIn);
 
   const handleLogout = () => {
     firebaseAuth.signOut().then(() => {
@@ -56,19 +61,15 @@ const Header = () => {
   return (
     <Wrapper>
       <div className="container">
-        {/* <div className="item"> */}
         <ToastContainer position="top-right" />
         {user ? (
           <div className="item">
-            <p style={{ margin: "auto" }}>welcome {user?.displayName}</p>
+            <p style={{ margin: "auto" }}>Welcome {user?.displayName}</p>
             <button
-              style={{
-                padding: "2px 8px",
-                fontSize: "12px",
-                borderRadius: "5px",
-                cursor: "pointer",
+              onClick={() => {
+                clearCart();
+                handleLogout();
               }}
-              onClick={handleLogout}
             >
               {" "}
               LogOut{" "}
@@ -85,17 +86,6 @@ const Header = () => {
             </Link>
           </div>
         )}
-
-        {/* <Link to="/login" className="linkBtn"> */}
-        {/* SignIn */}
-        {/* {(user && `welcome ${user.displayName}`) || "signin"} */}
-        {/* </Link> */}
-
-        {/* <Link to="/register" className="linkBtn">
-            Create Account
-            {(user && <button>logout</button>) || "Create account"}
-          </Link> */}
-        {/* </div> */}
       </div>
     </Wrapper>
   );

@@ -52,7 +52,6 @@ export const FilterProvider = ({ children }) => {
   }, [products, state.sort, state.filters]);
 
   const updateSort = (e) => {
-    // const name = e.target.name;
     const value = e.target.value;
     dispatch({ type: UPDATE_SORT, payload: value });
   };
@@ -93,7 +92,7 @@ export const FilterProvider = ({ children }) => {
     </FilterContext.Provider>
   );
 };
-// make sure use
+
 export const useFilterContext = () => {
   return useContext(FilterContext);
 };

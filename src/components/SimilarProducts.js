@@ -39,7 +39,6 @@ const Wrapper = styled.section`
   clip-path: polygon(0 0, 100% 0, 100% 100%, 80% 98%, 0 100%);
   .featured {
     margin: 4rem auto;
-    /* display: grid; */
     display: flex;
     overflow-x: auto;
 

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
 import { FaBars } from "react-icons/fa";
-
+import brush from "../assets/brush.png";
 import { links } from "../utils/constants";
 import CartButtons from "./CartButtons";
 import { useProductsContext } from "../context/products_context";
@@ -17,8 +17,11 @@ const Nav = () => {
     <NavContainer>
       <div className="nav-center">
         <div className="nav-header">
-          <NavLink to="/">
+          <NavLink to="/" className="logoHolder">
             <img src={logo} alt="logo" />
+            <span>
+              <img src={brush} alt="" />
+            </span>
           </NavLink>
           <button className="nav-toggle" onClick={openSideBar}>
             <FaBars />
@@ -75,14 +78,30 @@ const NavContainer = styled.nav`
       width: 175px;
       margin-left: -15px;
     }
+
+    .logoHolder {
+      span {
+        height: fit-content;
+        width: auto;
+        display: inline-block;
+        position: relative;
+        right: 6.3rem;
+        z-index: -1;
+        img {
+          height: 3.5rem;
+          width: 4.5rem;
+          opacity: 0.8;
+        }
+      }
+    }
   }
   .nav-toggle {
     background: transparent;
     border: transparent;
-    color: var(--clr-primary-5);
+    color: var(--clr-grey-4);
     cursor: pointer;
     svg {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
   }
   .nav-links {
@@ -108,7 +127,6 @@ const NavContainer = styled.nav`
       }
       a {
         color: var(--clr-grey-5);
-        /* color: black; */
         font-size: 1.25rem;
         text-transform: capitalize;
         letter-spacing: var(--spacing);

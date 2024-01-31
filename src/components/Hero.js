@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import heroBcg from "../assets/hero-bcg.jpeg";
-import heroBcg2 from "../assets/hero-bcg-2.jpeg";
 import Sdata from "./Sdata";
-// import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { useEffect } from "react";
-
-import { FaQuoteRight } from "react-icons/fa";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+
 const Hero = () => {
   const [people, setPeople] = useState(Sdata);
   const [currentPerson, setCurrentPerson] = useState(0);
@@ -54,9 +49,6 @@ const Hero = () => {
               key={id}
             >
               <img className="banner-img" src={cover} alt="" />
-              {/* <h5 className="name">{name}</h5> */}
-              {/* <p className="title">{title}</p> */}
-              {/* <p className="text">{quote}</p> */}
             </article>
           );
         })}
@@ -100,9 +92,6 @@ const Wrapper = styled.section`
     padding: 0 1rem;
   }
   .banner-img {
-    /* height: 80vh;
-    width: 90vw;
-    object-fit: cover; */
     max-width: 100%;
     height: 2000px;
     width: 4000px;
@@ -157,10 +146,6 @@ const Wrapper = styled.section`
     .text {
       max-width: 15rem;
     }
-    /* .next,
-    .prev {
-      top: 100px;
-    } */
 
     .next,
     .prev {

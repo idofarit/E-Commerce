@@ -24,13 +24,12 @@ const SingleProductPage = () => {
     single_product_error: error,
     single_product: product,
     fetchSingleProduct,
-    products: similar_products,
   } = useProductsContext();
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
   }, [id]);
-  // console.log(product);
+
   useEffect(() => {
     if (error) {
       setTimeout(() => {
@@ -82,10 +81,18 @@ const SingleProductPage = () => {
               {company}
             </p>
             <hr />
-            {stock > 0 && <AddToCart product={product} />}
+
+            {stock > 0 ? (
+              <AddToCart product={product} />
+            ) : (
+              <>
+                <button className="btn">Out of Stock...</button>
+              </>
+            )}
           </section>
         </div>
       </div>
+
       <SimilarProducts />
     </Wrapper>
   );
@@ -122,6 +129,11 @@ const Wrapper = styled.main`
     .price {
       font-size: 1.25rem;
     }
+  }
+  button {
+    margin-top: 2rem;
+    opacity: 0.6;
+    pointer-events: none;
   }
 `;
 

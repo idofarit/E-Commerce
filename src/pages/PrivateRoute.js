@@ -1,17 +1,10 @@
-import React from "react";
-import { Route, Redirect, Navigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-// will remove later
-import { useUserContext } from "../context/user_context";
+import { Navigate } from "react-router-dom";
+
 import { useFirebase } from "../Firebase/Firebase";
 
-const PrivateRoute = ({ children, ...rest }) => {
-  console.log(children, "children");
-  console.log(rest, "rest");
+const PrivateRoute = ({ children }) => {
   const { user } = useFirebase();
-  // if (!user) {
-  //   return <Navigate to="/login" />;
-  // }
-  return user ? children : <Navigate to="/login" />;
+
+  return user ? children : <Navigate to="/" />;
 };
 export default PrivateRoute;

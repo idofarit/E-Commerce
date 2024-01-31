@@ -1,31 +1,39 @@
 import React from "react";
-import { FaShoppingCart, FaUserMinus, FaUserPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaUserMinus, FaUserPlus } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
-import { useUserContext } from "../context/user_context";
-import { useFirebase } from "../Firebase/Firebase";
+import { firebaseAuth, useFirebase } from "../Firebase/Firebase";
 import cartLogo from "../assets/cartlogo.png";
+import { toast } from "react-toastify";
 
 const CartButtons = () => {
+  const navigate = useNavigate();
   const { total_items } = useCartContext();
   const { closeSideBar } = useProductsContext();
-  const { isLoggedIn, handleLogOut } = useFirebase();
+  const { isLoggedIn } = useFirebase();
+
+  const handleLogout = () => {
+    firebaseAuth.signOut().then(() => {
+      navigate("/login");
+      toast.success("Logged Out");
+    });
+  };
+
   return (
     <Wrapper className="cart-btn-wrapper">
       <Link to="/cart" className="cart-btn" onClick={closeSideBar}>
         cart
         <span className="cart-container">
-          {/* <FaShoppingCart /> */}
           <div className="cart-btn">
             <img src={cartLogo} alt="" />
           </div>
           <span className="cart-value">{total_items}</span>
         </span>
       </Link>
-      {/* {isLoggedIn ? (
-        <Link onClick={handleLogOut} className="cart-btn">
+      {isLoggedIn ? (
+        <Link onClick={handleLogout} className="cart-btn">
           LogOut
           <span className="auth-btn">
             <FaUserMinus />
@@ -38,7 +46,7 @@ const CartButtons = () => {
             <FaUserPlus />
           </span>
         </Link>
-      )} */}
+      )}
     </Wrapper>
   );
 };

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import FormInput from "../components/FormInput";
 import { Form, Link, useNavigate } from "react-router-dom";
-import { fireStore, firebaseAuth, useFirebase } from "../Firebase/Firebase";
+import { fireStore, firebaseAuth } from "../Firebase/Firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 
 const Wrapper = styled.div`
@@ -102,13 +101,10 @@ const Register = () => {
           });
       })
       .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        console.log(error.message);
-        if (error.message == "Firebase: Error (auth/invalid-email).") {
+        if (error.message === "Firebase: Error (auth/invalid-email).") {
           toast.error("Please fill all required fields");
         }
-        if (error.message == "Firebase: Error (auth/email-already-in-use).") {
+        if (error.message === "Firebase: Error (auth/email-already-in-use).") {
           toast.warning("User already exists");
         }
       });

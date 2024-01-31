@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-const PageHero = ({ src }) => {
+
+const PageHero = ({ title }) => {
   return (
     <Wrapper>
       <div className="section-center">
-        <img src="" alt="" />
+        <h3>{title}</h3>
       </div>
     </Wrapper>
   );
@@ -17,8 +17,8 @@ const Wrapper = styled.section`
   min-height: 20vh;
   display: flex;
   align-items: center;
-
-  color: var(--clr-primary-1);
+  text-align: center;
+  color: var(--clr-primary-3);
   a {
     color: var(--clr-primary-3);
     padding: 0.5rem;

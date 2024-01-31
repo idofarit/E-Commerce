@@ -194,10 +194,12 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     border-color: transparent;
     padding: 0.25rem;
+    width: 9rem;
   }
   .colors {
     display: flex;
     align-items: center;
+    width: 9rem;
   }
   .color-btn {
     display: inline-block;
@@ -232,6 +234,7 @@ const Wrapper = styled.section`
   }
   .price {
     margin-bottom: 0.25rem;
+    width: 9rem;
   }
   .shipping {
     display: grid;
@@ -247,6 +250,7 @@ const Wrapper = styled.section`
     color: var(--clr-white);
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius);
+    width: 9rem;
   }
   .item-1 {
     grid-area: search;

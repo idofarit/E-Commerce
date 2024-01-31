@@ -1,5 +1,6 @@
 import React from "react";
 import { BsFacebook, BsInstagram, BsTwitch } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Footer = () => {
@@ -10,52 +11,54 @@ const Footer = () => {
           <div className="links">
             <div className="link-div">
               <h4>For business</h4>
-              <a href="/employee">
+
+              <Link to="/">
                 <p>employee</p>
-              </a>
-              <a href="/employee">
+              </Link>
+              <Link to="/">
                 <p>employee</p>
-              </a>
-              <a href="/employee">
-                <p>employee</p>
-              </a>
+              </Link>
             </div>
             <div className="link-div">
               <h4>resources</h4>
-              <a href="/resource">
+              <Link to="/">
                 <p>resource counter</p>
-              </a>
-              <a href="/employee">
+              </Link>
+              <Link to="/">
                 <p>testimonials</p>
-              </a>
-              <a href="/employee">
+              </Link>
+              <Link to="/">
                 <p>ETC</p>
-              </a>
+              </Link>
             </div>
             <div className="link-div">
               <h4>partners</h4>
-              <a href="/employee">
+              <Link to="/">
                 <p>swing tech</p>
-              </a>
+              </Link>
             </div>
             <div className="link-div">
               <h4>company</h4>
-              <a href="/about">
+              <Link to="/about">
                 <p>about</p>
-              </a>
-              <a href="/">
+              </Link>
+              <Link to="/">
                 <p>Home</p>
-              </a>
-              <a href="/products">
+              </Link>
+              <Link to="/products">
                 <p>products</p>
-              </a>
+              </Link>
             </div>
             <div className="link-div">
-              <h4>Connect with Us</h4>
+              <h4>Connect Us</h4>
               <div className="socialmedia">
-                <BsFacebook className="img" />
-                <BsTwitch className="img" />
-                <BsInstagram className="img" />
+                <Link to="https://www.facebook.com/">
+                  <BsFacebook className="img" />
+                </Link>
+
+                <Link to="https://www.instagram.com/">
+                  <BsInstagram className="img" />
+                </Link>
               </div>
             </div>
           </div>
@@ -66,21 +69,21 @@ const Footer = () => {
               <p>@{new Date().getFullYear()} ShopKart. All Rights Reserved.</p>
             </div>
             <div className="footer-below-links">
-              <a href="/terms">
+              <Link href="/terms">
                 <div>
                   <p>Terms & conditions</p>
                 </div>
-              </a>
-              <a href="/privacy">
+              </Link>
+              <Link to="/privacy">
                 <div>
                   <p>privacy</p>
                 </div>
-              </a>
-              <a href="/cookie">
+              </Link>
+              <Link to="/cookie">
                 <div>
                   <p>Cookie declaration</p>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -135,9 +138,10 @@ const Wrapper = styled.div`
   .socialmedia {
     display: flex;
     flex-direction: row;
-
+    justify-content: space-evenly;
     .img {
-      width: 80%;
+      width: 2rem;
+      height: 1.2rem;
     }
   }
   .footer-below {

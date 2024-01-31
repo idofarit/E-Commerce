@@ -1,4 +1,3 @@
-// import img1 from "./images/1img.jpg";
 import img2 from "./images/vecteezy_online-shopping-on-phone-buy-sell-business-digital-web_4299835.jpg";
 import img3 from "./images/vecteezy_paper-art-shopping-online-on-smartphone-and-new-buy-sale_6828791.jpg";
 import img4 from "./images/vecteezy_flash-big-sale-shopping-online-on-phone-banner-business_6828783.jpg";

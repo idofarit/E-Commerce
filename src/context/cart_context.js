@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useReducer, useState } from "react";
+import React, { useEffect, useContext, useReducer } from "react";
 import reducer from "../reducers/cart_reducer";
 import {
   ADD_TO_CART,
@@ -7,16 +7,6 @@ import {
   CLEAR_CART,
   COUNT_CART_TOTALS,
 } from "../actions";
-import { fireStore, firebaseAuth, useFirebase } from "../Firebase/Firebase";
-import { onAuthStateChanged, updateProfile } from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  setDoc,
-} from "firebase/firestore";
 
 const getLocalStorage = () => {
   let cart = localStorage.getItem("cart");
@@ -38,51 +28,35 @@ const CartContext = React.createContext();
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  // adding to cart
-  const addToCart = async (id, color, amount, product) => {
-    dispatch({
-      type: ADD_TO_CART,
-      payload: { id, color, amount, product },
-    });
-
-    // await addDoc(collection(fireStore, "cartItem"), {
-    //   cart: state.cart,
-    // });
+  // add to cart
+  const addToCart = (id, color, amount, product) => {
+    dispatch({ type: ADD_TO_CART, payload: { id, color, amount, product } });
   };
-
-  // remove from cart
+  // remove item
   const removeItem = (id) => {
     dispatch({ type: REMOVE_CART_ITEM, payload: id });
   };
-
   // toggle amount
   const toggleAmount = (id, value) => {
-    // console.log(id, value);
-    dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, value } });
+    dispatch({
+      type: TOGGLE_CART_ITEM_AMOUNT,
+      payload: {
+        id,
+        value,
+      },
+    });
   };
-
   // clear cart
   const clearCart = () => {
     dispatch({ type: CLEAR_CART });
   };
-
-  // localStorage invoke
   useEffect(() => {
-    dispatch({ type: COUNT_CART_TOTALS });
-
     localStorage.setItem("cart", JSON.stringify(state.cart));
+    dispatch({ type: COUNT_CART_TOTALS });
   }, [state.cart]);
-
   return (
     <CartContext.Provider
-      value={{
-        ...state,
-        addToCart,
-        removeItem,
-        clearCart,
-        toggleAmount,
-      }}
+      value={{ ...state, addToCart, removeItem, toggleAmount, clearCart }}
     >
       {children}
     </CartContext.Provider>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useProductsContext } from "../context/products_context";
 
 const ProductImages = ({ images = [{ url: " " }] }) => {
   const [main, setMain] = useState(images[0]);
-  // console.log(main);
-  // console.log(images);
+  const { single_product_loading: loading } = useProductsContext();
+
   useEffect(() => {
     if (images[0].url !== "") {
       setMain(images[0]);

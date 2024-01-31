@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { FaPlus, FaMinus, FaUps } from "react-icons/fa";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 const AmountButtons = ({ increase, decrease, amount }) => {

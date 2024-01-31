@@ -1,27 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  onAuthStateChanged,
-  signOut,
-  updateProfile,
-} from "firebase/auth";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  Firestore,
-  setDoc,
-  doc,
-  getDoc,
-} from "firebase/firestore";
+import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 const FirebaseContext = createContext(null);
 
@@ -43,8 +24,6 @@ export const firebaseAuth = getAuth(firebaseApp);
 export const fireStore = getFirestore(firebaseApp);
 export const storage = getStorage(firebaseApp);
 
-const googleProvider = new GoogleAuthProvider();
-
 export const FirebaseProvider = (props) => {
   // user active check
   const [user, setUser] = useState(null);
@@ -56,33 +35,15 @@ export const FirebaseProvider = (props) => {
       } else {
         setUser(null);
       }
-      console.log("user", user);
     });
   }, []);
   // user active check end
-
-  const signInWithGoogle = () => signInWithPopup(firebaseAuth, googleProvider);
-
-  console.log(user);
-
-  const uploadProfileImg = async (file, user, setLoading) => {
-    setLoading(true);
-    const fileRef = ref(storage, `profileImages/${user?.uid + ".png"}`);
-    const snapshot = await uploadBytes(fileRef, file);
-    const photoURL = await getDownloadURL(fileRef);
-    updateProfile(user, {
-      photoURL,
-    });
-    setLoading(false);
-  };
 
   const isLoggedIn = user ? true : false;
 
   return (
     <FirebaseContext.Provider
       value={{
-        signInWithGoogle,
-
         isLoggedIn,
 
         user,

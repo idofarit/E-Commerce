@@ -43,14 +43,6 @@ const Profile = () => {
 
   return (
     <Wrapper>
-      {/* <div className="fields">
-        <input type="file" onChange={handleChange} />
-        <button disabled={loading || !photo} onClick={handleClick}>
-          Upload
-        </button>
-        <img src={photoUrl} className="avatar" alt="" />
-      </div> */}
-
       <div className="userprofile-outercontainer">
         {user ? (
           <div className="user-profile">
