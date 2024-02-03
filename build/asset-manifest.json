@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6398ff58.css",
+    "main.js": "/static/js/main.1fc63b68.js",
+    "static/media/vecteezy_online-shopping-on-phone-buy-sell-business-digital-web_4299835.jpg": "/static/media/vecteezy_online-shopping-on-phone-buy-sell-business-digital-web_4299835.8e4fa4bd491854244925.jpg",
+    "static/media/vecteezy_paper-art-shopping-online-on-smartphone-and-new-buy-sale_6828791.jpg": "/static/media/vecteezy_paper-art-shopping-online-on-smartphone-and-new-buy-sale_6828791.77c4f759dc289abea229.jpg",
+    "static/media/vecteezy_flash-big-sale-shopping-online-on-phone-banner-business_6828783.jpg": "/static/media/vecteezy_flash-big-sale-shopping-online-on-phone-banner-business_6828783.b7912c75918d0227ea6c.jpg",
+    "static/media/hero-bcg.jpeg": "/static/media/hero-bcg.a876f19f6786a3aca992.jpeg",
+    "static/media/kids.jpg": "/static/media/kids.9bd35270b52a7ce44277.jpg",
+    "static/media/bangle.JPG": "/static/media/bangle.9baae3d4256597978e4a.JPG",
+    "static/media/jwellery.JPG": "/static/media/jwellery.4786b3624272b80a4827.JPG",
+    "static/media/women.JPG": "/static/media/women.641f9f0cbcea9a1281e5.JPG",
+    "static/media/cartlogo.png": "/static/media/cartlogo.f2dc75e05a2f07ca6c07.png",
+    "static/media/infant.JPG": "/static/media/infant.2a2c8cf6d8073bb51e77.JPG",
+    "static/media/men.jpg": "/static/media/men.426ce116b4bdbf51b4f5.jpg",
+    "static/media/brush.png": "/static/media/brush.85c9bab5ba2d7dcae1e3.png",
+    "static/media/g-img.png": "/static/media/g-img.a6e5cf604f979ff4b0cf.png",
+    "index.html": "/index.html",
+    "main.6398ff58.css.map": "/static/css/main.6398ff58.css.map",
+    "main.1fc63b68.js.map": "/static/js/main.1fc63b68.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6398ff58.css",
+    "static/js/main.1fc63b68.js"
+  ]
+}
