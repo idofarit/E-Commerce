@@ -4,12 +4,12 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 const AmountButtons = ({ increase, decrease, amount }) => {
   return (
-    <Wrapper className="amount-btn">
-      <button className="amount-btn" onClick={increase}>
+    <Wrapper className="amount-btns">
+      <button className="amount-btn" onClick={increase} type="button">
         <MdKeyboardArrowUp />
       </button>
       <h4 className="amount">{amount}</h4>
-      <button className="amount-btn" onClick={decrease}>
+      <button className="amount-btn" onClick={decrease} type="button">
         <MdKeyboardArrowDown />
       </button>
     </Wrapper>
