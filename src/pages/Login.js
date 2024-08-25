@@ -8,10 +8,6 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
-<<<<<<< Updated upstream
-=======
-  signOut,
->>>>>>> Stashed changes
 } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -170,11 +166,7 @@ const Login = () => {
         <h4>LogIn</h4>
         <ToastContainer position="top-center" />
 
-<<<<<<< Updated upstream
         {/* google signIn button */}
-=======
-        {/* google sign-in */}
->>>>>>> Stashed changes
         <div className="google-btn" onClick={handleGoogleSignIn}>
           <div className="google-icon-wrapper">
             <img className="google-icon" src={gImg} />

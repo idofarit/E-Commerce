@@ -51,10 +51,6 @@ export const CartProvider = ({ children }) => {
   const clearCart = () => {
     dispatch({ type: CLEAR_CART });
   };
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(state.cart));
     dispatch({ type: COUNT_CART_TOTALS });

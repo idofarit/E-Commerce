@@ -9,10 +9,6 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useCartContext } from "../context/cart_context";
-<<<<<<< Updated upstream
-=======
-import { useUserContext } from "../context/user_context";
->>>>>>> Stashed changes
 import { formatPrice } from "../utils/helpers";
 import { Link, useNavigate } from "react-router-dom";
 import { useFirebase } from "../Firebase/Firebase";
@@ -24,11 +20,7 @@ const CheckoutForm = () => {
   const navigate = useNavigate();
   const { cart, total_amount, shipping_fee, clearCart } = useCartContext();
 
-<<<<<<< Updated upstream
   const [succeeded, setSucceeded] = useState(false);
-=======
-  const [succeeded, setSucceeded] = useState(true);
->>>>>>> Stashed changes
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
@@ -56,19 +48,12 @@ const CheckoutForm = () => {
 
   const createPaymentIntent = async () => {
     try {
-<<<<<<< Updated upstream
       const { data } = await axios.post(
         "/.netlify/functions/create-payment-intent",
         JSON.stringify({ cart, shipping_fee, total_amount })
       );
 
       setClientSecret(data.clientSecret);
-=======
-      const data = await axios.post(
-        "/.netlify/functions/create-payment-intent"
-      );
-      JSON.stringify({ cart, shipping_fee, total_amount });
->>>>>>> Stashed changes
     } catch (error) {}
   };
 
@@ -77,7 +62,6 @@ const CheckoutForm = () => {
     // eslint-disable-next-line
   }, []);
 
-<<<<<<< Updated upstream
   const handleChange = async (event) => {
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
@@ -120,14 +104,6 @@ const CheckoutForm = () => {
           <p>Test card number: 4242 4242 4242 4242 </p>
         </article>
       )}
-=======
-  const handleChange = async (event) => {};
-
-  const handleSubmit = async (ev) => {};
-
-  return (
-    <div>
->>>>>>> Stashed changes
       <form id="payment-form" onSubmit={handleSubmit}>
         <CardElement
           id="card-element"
@@ -135,11 +111,7 @@ const CheckoutForm = () => {
           onChange={handleChange}
         />
         <button id="submit" disabled={processing || disabled || succeeded}>
-<<<<<<< Updated upstream
           <span id="button-text">
-=======
-          <span>
->>>>>>> Stashed changes
             {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
           </span>
         </button>
@@ -153,10 +125,7 @@ const CheckoutForm = () => {
         <p className={succeeded ? "result-message" : "result-message hidden"}>
           Payment Successfull, Check the result{" "}
           <Link to={`https://dashboard.stripe.com/test/payments`}>here</Link>
-<<<<<<< Updated upstream
           <br /> <span>Refresh the page to Pay again</span>
-=======
->>>>>>> Stashed changes
         </p>
       </form>
     </div>
