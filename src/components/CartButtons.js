@@ -33,7 +33,11 @@ const CartButtons = () => {
         </span>
       </Link>
       {isLoggedIn ? (
+<<<<<<< Updated upstream
         <Link onClick={handleLogout} className="cart-btn">
+=======
+        <Link onClick={handleLogOut} className="cart-btn">
+>>>>>>> Stashed changes
           LogOut
           <span className="auth-btn">
             <FaUserMinus />

@@ -76,7 +76,15 @@ const cart_reducer = (state, action) => {
       },
       { total_items: 0, total_amount: 0 }
     );
+<<<<<<< Updated upstream
     return { ...state, total_items, total_amount };
+=======
+    return {
+      ...state,
+      total_items: total_items,
+      total_amount: total_amount,
+    };
+>>>>>>> Stashed changes
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

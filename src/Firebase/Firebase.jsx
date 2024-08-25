@@ -39,13 +39,30 @@ export const FirebaseProvider = (props) => {
   }, []);
   // user active check end
 
+<<<<<<< Updated upstream
+=======
+  const uploadProfileImg = async (file, user, setLoading) => {
+    setLoading(true);
+    const fileRef = ref(storage, `profileImages/${user?.uid + ".png"}`);
+    const snapshot = await uploadBytes(fileRef, file);
+    const photoURL = await getDownloadURL(fileRef);
+    updateProfile(user, {
+      photoURL,
+    });
+    setLoading(false);
+  };
+
+>>>>>>> Stashed changes
   const isLoggedIn = user ? true : false;
+
+  // useEffect(() => {
+  //   localStorage.setItem("user", JSON.stringify(user));
+  // }, [user]);
 
   return (
     <FirebaseContext.Provider
       value={{
         isLoggedIn,
-
         user,
       }}
     >
